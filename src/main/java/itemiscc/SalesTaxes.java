@@ -1,9 +1,14 @@
 package itemiscc;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Main class of the application.
  */
 public class SalesTaxes {
+  private static final Logger LOG = Logger.getLogger(SalesTaxes.class.getName());
+
   /**
    * Prints out receipt details for the example shopping baskets.
    */
@@ -23,12 +28,17 @@ public class SalesTaxes {
         "> 1 packet of headache pills at 9.75",
         "> 1 box of imported chocolates at 11.25");
 
-    Basket firstBasket = BasketParser.parse(firstInput);
-    Basket secondBasket = BasketParser.parse(secondInput);
-    Basket thirdBasket = BasketParser.parse(thirdInput);
+    try {
+      Basket firstBasket = BasketParser.parse(firstInput);
+      System.out.println("Output 1:\n\n" + firstBasket.getReceipt() + "\n");
 
-    System.out.println("Output 1:\n\n" + firstBasket.getReceipt() + "\n");
-    System.out.println("Output 2:\n\n" + secondBasket.getReceipt() + "\n");
-    System.out.println("Output 3:\n\n" + thirdBasket.getReceipt() + "\n");
+      Basket secondBasket = BasketParser.parse(secondInput);
+      System.out.println("Output 2:\n\n" + secondBasket.getReceipt() + "\n");
+
+      Basket thirdBasket = BasketParser.parse(thirdInput);
+      System.out.println("Output 3:\n\n" + thirdBasket.getReceipt() + "\n");
+    } catch (NumberFormatException ex) {
+      LOG.log(Level.WARNING, "Failed to parse numbers of basket entry, not matching the expected pattern.", ex);
+    }
   }
 }
