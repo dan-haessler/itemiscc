@@ -1,5 +1,6 @@
 package itemiscc;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,7 +27,18 @@ public class Basket {
    */
   public String getReceipt() {
     StringBuilder builder = new StringBuilder();
+    this.entries.stream().map(BasketEntry::toString).forEach(string -> builder.append(string).append("\n"));
+    builder.append("Sales Taxes: ").append(this.getTotalTaxes()).append("\n");
+    builder.append("Total: ").append(this.getTotal());
     return builder.toString();
+  }
+  
+  private BigDecimal getTotalTaxes() {
+    return this.entries.stream().map(BasketEntry::getTaxes).reduce(new BigDecimal("0.0"), BigDecimal::add);
+  }
+
+  private BigDecimal getTotal() {
+    return this.entries.stream().map(BasketEntry::getGrossPrice).reduce(new BigDecimal("0.0"), BigDecimal::add);
   }
 
   /**

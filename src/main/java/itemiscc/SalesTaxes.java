@@ -30,13 +30,13 @@ public class SalesTaxes {
 
     try {
       Basket firstBasket = BasketParser.parse(firstInput);
-      System.out.println("Output 1:\n\n" + firstBasket.getReceipt() + "\n");
+      System.out.println("Output 1:\n" + firstBasket.getReceipt() + "\n");
 
       Basket secondBasket = BasketParser.parse(secondInput);
-      System.out.println("Output 2:\n\n" + secondBasket.getReceipt() + "\n");
+      System.out.println("Output 2:\n" + secondBasket.getReceipt() + "\n");
 
       Basket thirdBasket = BasketParser.parse(thirdInput);
-      System.out.println("Output 3:\n\n" + thirdBasket.getReceipt() + "\n");
+      System.out.println("Output 3:\n" + thirdBasket.getReceipt() + "\n");
     } catch (NumberFormatException ex) {
       LOG.log(Level.WARNING, "Failed to parse numbers of basket entry, not matching the expected pattern.", ex);
     }
