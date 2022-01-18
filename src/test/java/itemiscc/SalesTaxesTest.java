@@ -1,6 +1,9 @@
 package itemiscc;
 
 import static org.junit.Assert.assertEquals;
+
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 /**
@@ -8,10 +11,30 @@ import org.junit.Test;
  */
 public class SalesTaxesTest {
   /**
+   * Test tax lookup based on description, import bool.
+   */
+  @Test
+  public void testTaxTable() {
+    BigDecimal noTax = new BigDecimal("0.00");
+    BigDecimal importedTax = new BigDecimal("0.05");
+    BigDecimal basicTax = new BigDecimal("0.10");
+    BigDecimal fullTax = new BigDecimal("0.15");
+
+    // Net and gross prices do not matter here.
+    assert(TaxTable.getTaxRate("book", false).compareTo(noTax) == 0);
+    assert(TaxTable.getTaxRate("chocolate bar", false).compareTo(noTax) == 0);
+    assert(TaxTable.getTaxRate("packet of headache pills", false).compareTo(noTax) == 0);
+    
+    assert(TaxTable.getTaxRate("book", true).compareTo(importedTax) == 0);
+    assert(TaxTable.getTaxRate("music CD", false).compareTo(basicTax) == 0);
+    assert(TaxTable.getTaxRate("music CD", true).compareTo(fullTax) == 0);
+  }
+
+  /**
    * Test first simple example. No imports, just some basic sales taxes.
    */
   @Test
-  public void testFirstInput() throws NumberFormatException {
+  public void testFirstInput() {
     String inputString = String.join("\n",
         "> 1 book at 12.49",
         "> 1 music CD at 14.99",
