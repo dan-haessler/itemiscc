@@ -6,8 +6,8 @@ import java.math.BigDecimal;
  * A simple shopping basket entry.
  */
 public class BasketEntry {
-  private final Integer amount;
-  private final Boolean imported;
+  private final int amount;
+  private final boolean imported;
   private final String description;
   private final BigDecimal netPrice;
   private final BigDecimal grossPrice;
@@ -15,13 +15,13 @@ public class BasketEntry {
   /**
    * Constructs a new basket entry.
    *
-   * @param amount      Amount of items as Integer.
-   * @param imported    bool whether it is imported.
+   * @param amount      Amount of items as an integer.
+   * @param imported    boolean whether it is imported.
    * @param description string description of item.
    * @param netPrice    net price/shelf price of item.
    * @param grossPrice  gross price of item.
    */
-  public BasketEntry(Integer amount, Boolean imported, String description, BigDecimal netPrice, BigDecimal grossPrice) {
+  public BasketEntry(int amount, boolean imported, String description, BigDecimal netPrice, BigDecimal grossPrice) {
     this.amount = amount;
     this.imported = imported;
     this.description = description;
@@ -30,11 +30,11 @@ public class BasketEntry {
   }
 
   public int getAmount() {
-    return this.amount.intValue();
+    return this.amount;
   }
 
   public boolean isImported() {
-    return this.imported.booleanValue();
+    return this.imported;
   }
 
   public String getDescription() {

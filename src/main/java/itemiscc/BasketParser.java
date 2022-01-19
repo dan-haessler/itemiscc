@@ -15,7 +15,7 @@ public final class BasketParser {
   // Expected pattern of the basket/receipt entry.
   private static final Pattern PATTERN = Pattern.compile("(?:>\\s)?(\\d+)\\s((?:\\w*\\s*)*)\\s?(at|:)\\s(\\d+.\\d+)");
   private static final MathContext PRECISION = MathContext.DECIMAL128;
-  private static final BigDecimal TAX_PRECISION = new BigDecimal("20");
+  private static final BigDecimal TAX_PRECISION = new BigDecimal(20);
 
   private BasketParser() {
   }
@@ -38,7 +38,7 @@ public final class BasketParser {
   }
 
   private static BasketEntry toBasketEntry(final Matcher matcher) throws NumberFormatException {
-    int amount = Integer.valueOf(matcher.group(1));
+    int amount = Integer.valueOf(matcher.group(1)).intValue();
     String description = matcher.group(2).strip();
     String newDescription = Arrays.stream(description.split(" "))
         .filter(word -> !word.contains("import"))
@@ -58,7 +58,7 @@ public final class BasketParser {
       grossPrice = netPrice.add(taxAmount);
     } else {
       grossPrice = new BigDecimal(matcher.group(4));
-      netPrice = grossPrice.divide((new BigDecimal("1.0")).add(taxRate), PRECISION);
+      netPrice = grossPrice.divide((new BigDecimal(1)).add(taxRate), PRECISION);
       taxAmount = grossPrice.subtract(netPrice)
           .multiply(TAX_PRECISION).setScale(0, RoundingMode.UP)
           .divide(TAX_PRECISION, PRECISION);
