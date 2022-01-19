@@ -1,5 +1,5 @@
 [package]
-name = "conference-track-management"
+name = "conference_track_management"
 description = "A rust solution to the conference track management problem."
 version = "1.0.0"
 authors = ["Dan Häßler"]
