@@ -1,4 +1,6 @@
 use conference_track_management::Talk;
+use conference_track_management::Track;
+use std::str::FromStr;
 
 fn main() {
   let input = "\
@@ -25,12 +27,38 @@ fn main() {
   let mut talks: Vec<Talk> = Vec::new();
 
   for line in input.lines() {
-    if let Ok(talk) = Talk::from_string(line) {
+    if let Ok(talk) = Talk::from_str(line) {
       talks.push(talk);
     }
   }
 
-  for talk in talks {
-    println!("{}", talk);
+  let tracks: Vec<Track> = organize(talks);
+  for i in 0..tracks.len() {
+    println!("Track {}\n{}", i + 1, tracks[i]);
   }
+}
+
+/// # Since this is reducible to the bin packing problem, it is a np problem.
+/// # Greedy algorithm putting longest talk into sessions first.
+/// # This does not always lead to an optimal solution but is a good approximation.
+fn organize(mut talks: Vec<Talk>) -> Vec<Track> {
+  talks.sort_by(|a, b| b.duration.cmp(&a.duration));
+  let mut track: Track = Track::new();
+  let mut tracks: Vec<Track> = Vec::new();
+
+  while talks.len() > 0 {
+    let mut index = 0;
+    for _i in 0..talks.len() {
+      let talk: &Talk = &talks[index];
+      if track.add(talk.clone()) {
+        talks.remove(index);
+      } else {
+        index += 1;
+      }
+    }
+    tracks.push(track);
+    track = Track::new();
+  }
+
+  tracks
 }
