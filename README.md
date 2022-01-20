@@ -10,7 +10,7 @@ On the string patterns of the shopping basket:
 * "at" for shelf prices
 
 # How to
-Install and run: 
+Install: 
 ```
 mvn install
 ```
