@@ -4,3 +4,6 @@ description = "A rust solution to the conference track management problem."
 version = "1.0.0"
 authors = ["Dan Häßler"]
 edition = "2018"
+
+[dependencies]
+chrono = "0.4"
