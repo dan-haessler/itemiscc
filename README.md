@@ -9,8 +9,18 @@ On the string patterns of the shopping basket:
 * ":" for gross prices
 * "at" for shelf prices
 
+# How to
 Install and run: 
 ```
 mvn install
+```
+
+Get checkstyle report and javadoc:
+```
+mvn site
+```
+
+Run:
+```
 java -jar target/SalesTaxes.jar
 ```
