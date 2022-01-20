@@ -29,22 +29,47 @@ public class BasketEntry {
     this.grossPrice = grossPrice;
   }
 
+  /** 
+   * Getter for the amount of products within this entry.
+   *
+   * @return amount of products.
+   */
   public int getAmount() {
     return this.amount;
   }
 
+  /** 
+   * Getter whether this product of the entry was imported.
+   *
+   * @return boolean whether it is imported.
+   */
   public boolean isImported() {
     return this.imported;
   }
 
+  /** 
+   * Description of this product.
+   *
+   * @return description as String
+   */
   public String getDescription() {
     return this.description;
   }
 
+  /**
+   * Taxes of the product(s).
+   *
+   * @return BigDecimal of the total tax sum.
+   */
   public BigDecimal getTaxes() {
     return this.grossPrice.subtract(this.netPrice);
   }
 
+  /**
+   * The gross price of the product(s).
+   *
+   * @return BigDecimal of the gross price.
+   */
   public BigDecimal getGrossPrice() {
     return this.grossPrice;
   }

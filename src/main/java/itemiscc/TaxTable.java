@@ -35,6 +35,11 @@ public class TaxTable {
   /**
    * Determines the tax rate of an entry in the shopping basket based on
    * description and whether it is imported.
+   *
+   * @param description is the description of the product.
+   * @param imported whether the product is imported.
+   *
+   * @return total tax rate based on the params.
    */
   public static BigDecimal getTaxRate(String description, boolean imported) {
     Category category = CATEGORY_TABLE.getOrDefault(description, Category.OTHER);
