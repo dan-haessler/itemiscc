@@ -1,9 +1,20 @@
-# itemis coding challenge solution 1: Sales Taxes
-This is my solution written in Java with the build tool Maven.
+# itemis coding challenge solution 2: Conference Track Management
+This is my solution written in Rust to the second problem.
 
+# Assumptions 
+* Talk time is indicated with the keyword "min"
+* The output does not need an optimal solution since the problem is np complete. Greedy + first fit approach should return sufficient results.
+ 
 # howto
-Install and run: 
+Test: 
 ```
-mvn install
-java -jar target/SalesTaxes.jar
+cargo test
+```
+Check documentation with examples: 
+```
+cargo doc --open
+```
+Run: 
+```
+cargo run
 ```
